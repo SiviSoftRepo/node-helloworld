@@ -1,13 +1,13 @@
 {
   "name": "nodejs-hello-world",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Hello World sample app",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-    "author": "sivisoftdevops",
+  "author": "sivisoftdevops",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SivisoftDevops/Node-js-Helloworld/issues"
