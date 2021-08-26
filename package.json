@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-hello-world",
+  "name": "node-helloworld",
   "version": "1.0.2",
   "description": "Hello World sample app",
   "main": "server.js",
@@ -7,10 +7,10 @@
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "sivisoftdevops",
+  "author": "sivisoftRepo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SivisoftDevops/Node-js-Helloworld/issues"
+    "url": "https://github.com/SivisoftRepo/node-helloworld/issues"
   },
-  "homepage": "https://github.com/SivisoftDevops/Node-js-Helloworld#readme"
+  "homepage": "https://github.com/SivisoftRepo/node-helloworld#readme"
 }
