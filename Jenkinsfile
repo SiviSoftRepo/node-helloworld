@@ -10,7 +10,7 @@ k8snpmpipeline {
 
      label= 'LINUX'
 
-     appName =  'Node-js-Helloworld'
+     appName =  'Node-Helloworld'
 
      innerPort= '80'
 
