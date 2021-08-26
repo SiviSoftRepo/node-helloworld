@@ -31,8 +31,22 @@
 ## run nginx
 #CMD ["nginx", "-g", "daemon off;"]
 
-FROM node:4.2
-COPY . /src
-RUN cd /src && npm install
+#FROM node:4.2
+#COPY . /src
+#RUN cd /src && npm install
+#EXPOSE 8080
+#CMD ["node", "/src/server.js"]
+FROM node:12-slim
+
+# Create app directory
+WORKDIR /usr/src/app
+
+# Install app dependencies
+COPY package*.json ./
+RUN npm install
+
+# Bundle app source
+COPY . .
+
 EXPOSE 8080
-CMD ["node", "/src/server.js"]
+CMD [ "node", "server.js" ]
