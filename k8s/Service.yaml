@@ -3,8 +3,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-#    app: {app_name}
-     app: node-helloworld
+     app: {app_name}
+  #   app: node-helloworld
     env: dev
     release: "1.0.0"
   name: node-helloworld
@@ -17,8 +17,8 @@ spec:
     targetPort: 80
     protocol: TCP
   selector:
-#    app: {app_name}
-     app: node-helloworld
+    app: {app_name}
+#     app: node-helloworld
     env: dev
     release: "1.0.0"
   sessionAffinity: None
