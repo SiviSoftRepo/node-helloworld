@@ -41,7 +41,8 @@ FROM node:12-slim
 # Create app directory
 WORKDIR /usr/src/app
 
-# Install app dependencies
+# Install app dependencies  
+RUN apk --no-cache add curl
 COPY package*.json ./
 RUN npm install
 
