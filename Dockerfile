@@ -42,7 +42,7 @@ FROM node:12-slim
 WORKDIR /usr/src/app
 
 # Install app dependencies  
-#RUN apt-get update
+RUN apt-get update
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apt-get install curl 
 RUN apt-get install index.js
