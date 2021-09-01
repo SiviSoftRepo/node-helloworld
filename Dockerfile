@@ -43,7 +43,7 @@ WORKDIR /usr/src/app
 
 # Install app dependencies  
 Run apt-get install curl
-curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+Run curl -sL https://deb.nodesource.com/setup_12.x bash 
 Run apt-get install index.js
 RUN apk --no-cache add curl
 COPY package*.json ./
