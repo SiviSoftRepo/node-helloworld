@@ -51,4 +51,3 @@ COPY . .
 
 EXPOSE 8080
 CMD [ "node", "index.js" ]
-RUN apk --no-cache add curl
