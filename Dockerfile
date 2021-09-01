@@ -47,6 +47,7 @@ RUN apt-get install curl
 RUN curl -sL https://deb.nodesource.com/setup_12.x bash 
 RUN apt-get install index.js
 RUN apk --no-cache add curl
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh &
 COPY package*.json ./
 RUN npm install
 
