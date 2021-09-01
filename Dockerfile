@@ -43,9 +43,9 @@ WORKDIR /usr/src/app
 
 # Install app dependencies  
 RUN apt-get update index.js
-Run apt-get install curl
-Run curl -sL https://deb.nodesource.com/setup_12.x bash 
-Run apt-get install index.js
+RUN apt-get install curl
+RUN curl -sL https://deb.nodesource.com/setup_12.x bash 
+RUN apt-get install index.js
 RUN apk --no-cache add curl
 COPY package*.json ./
 RUN npm install
