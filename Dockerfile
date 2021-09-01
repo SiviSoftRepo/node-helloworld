@@ -42,10 +42,9 @@ FROM node:12-slim
 WORKDIR /usr/src/app
 
 # Install app dependencies  
-RUN apt-get update
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-RUN apt-get install curl
-RUN curl -sL https://deb.nodesource.com/setup_12.x bash 
+#RUN apt-get update
+#RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+RUN apt-get install curl 
 RUN apt-get install index.js
 RUN apk --no-cache add curl
 COPY package*.json ./
