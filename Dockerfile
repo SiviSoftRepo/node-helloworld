@@ -45,7 +45,7 @@ WORKDIR /usr/src/app
 RUN apt-get update
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apt-get install -y curl
-RUN apt-get install index.js
+RUN apt-get install
 RUN apk --no-cache add curl
 COPY package*.json ./
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
