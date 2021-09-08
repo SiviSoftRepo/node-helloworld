@@ -2,27 +2,81 @@
  * Prometheus client
  * @module Prometheus client
  */
+'use strict'
 
-'use strict';
+const express = require('express')
+const Prometheus = require('prom-client')
 
-exports.register = require('./lib/registry').globalRegistry;
-exports.Registry = require('./lib/registry');
-exports.contentType = require('./lib/registry').globalRegistry.contentType;
-exports.validateMetricName = require('./lib/validation').validateMetricName;
+const app = express()
+const port = process.env.PORT || 8080
+const metricsInterval = Prometheus.collectDefaultMetrics()
+onst checkoutsTotal = new Prometheus.Counter({
+  name: 'checkouts_total',
+  help: 'Total number of checkouts',
+  })
+const httpRequestDurationMicroseconds = new Prometheus.Histogram({
+  name: 'http_request_duration_ms',
+  help: 'Duration of HTTP requests in ms',
+  labelNames: ['method', 'route', 'code'],
+  buckets: [0.10, 5, 15, 50, 100, 200, 300, 400, 500]  // buckets for response time from 0.1ms to 500ms
+})
+// Runs before each requests
+app.use((req, res, next) => {
+  res.locals.startEpoch = Date.now()
+  next()
+})
 
-exports.Counter = require('./lib/counter');
-exports.Gauge = require('./lib/gauge');
-exports.Histogram = require('./lib/histogram');
-exports.Summary = require('./lib/summary');
-exports.Pushgateway = require('./lib/pushgateway');
+app.get('/', (req, res, next) => {
+  setTimeout(() => {
+    res.json({ message: 'Hello World!' })
+    next()
+  }, Math.round(Math.random() * 200))
+})
 
-exports.linearBuckets = require('./lib/bucketGenerators').linearBuckets;
-exports.exponentialBuckets = require('./lib/bucketGenerators').exponentialBuckets;
+app.get('/bad', (req, res, next) => {
+  next(new Error('My Error'))
+})
+app.get('/metrics', (req, res) => {
+  res.set('Content-Type', Prometheus.register.contentType)
+  res.end(Prometheus.register.metrics())
+})
 
-exports.collectDefaultMetrics = require('./lib/defaultMetrics');
+// Error handler
+app.use((err, req, res, next) => {
+  res.statusCode = 500
+  // Do not expose your error in production
+  res.json({ error: err.message })
+  next()
+})
 
-exports.aggregators = require('./lib/metricAggregators').aggregators;
-exports.AggregatorRegistry = require('./lib/cluster');
+// Runs after each requests
+app.use((req, res, next) => {
+  const responseTimeInMs = Date.now() - res.locals.startEpoch
+
+  httpRequestDurationMicroseconds
+    .labels(req.method, req.route.path, res.statusCode)
+    .observe(responseTimeInMs)
+
+  next()
+})
+
+const server = app.listen(port, () => {
+  console.log(`Example app listening on port ${port}!`)
+})
+
+// Graceful shutdown
+process.on('SIGTERM', () => {
+  clearInterval(metricsInterval)
+
+  server.close((err) => {
+    if (err) {
+      console.error(err)
+      process.exit(1)
+    }
+
+    process.exit(0)
+  })
+})    
 var http = require('http');
 var server = http.createServer(function(request, response) {
 
