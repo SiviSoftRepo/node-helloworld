@@ -9,7 +9,7 @@ metadata:
   name: {app_name}
   namespace: {ns}
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: {app_name}
