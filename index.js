@@ -8,7 +8,7 @@ const express = require('express')
 const Prometheus = require('prom-client')
 
 const app = express()
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8080 
 const metricsInterval = Prometheus.collectDefaultMetrics()
 const checkoutsTotal = new Prometheus.Counter({
   name: 'checkouts_total',
@@ -85,7 +85,7 @@ var server1 = http.createServer(function(request, response) {
 
 });
 
-var port = 8081;
-server1.listen(port);
+var port1 = 8081;
+server1.listen(port1);
 
 console.log("Server running at http://localhost:%d", port);
