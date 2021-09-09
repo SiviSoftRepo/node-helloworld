@@ -78,7 +78,7 @@ process.on('SIGTERM', () => {
   })
 })    
 var http = require('http');
-var server1 = http.createServer(function(request, response) {
+var server = http.createServer(function(request, response) {
 
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.end("Hello World!");
@@ -86,6 +86,6 @@ var server1 = http.createServer(function(request, response) {
 });
 
 var port = 8081;
-server1.listen(port);
+server.listen(port);
 
 console.log("Server running at http://localhost:%d", port);
