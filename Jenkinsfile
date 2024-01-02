@@ -1,4 +1,4 @@
-k8snpmpipeline {
+k8snpmpipelinesqmldevpipe {
 
      BUILD_TOOL = 'npm'
 
@@ -10,11 +10,11 @@ k8snpmpipeline {
 
      label= 'LINUX'
 
-     appName =  'node-helloworld'
+     appName =  'sqml-pipe-node'
 
-     innerPort= '80'
+     innerPort= '8080'
 
-     outerPort= '80'
+     outerPort= '8080'
 
 	   args = ''
 
