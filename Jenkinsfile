@@ -1,4 +1,4 @@
-k8snpmpipelinesqmldevpipe {
+k8snpmpipelineus {
 
      BUILD_TOOL = 'npm'
 
@@ -10,11 +10,11 @@ k8snpmpipelinesqmldevpipe {
 
      label= 'LINUX'
 
-     appName =  'sqml-pipe-node'
+     appName =  'sivisoft-ai-ui-vue3'
 
-     innerPort= '8080'
+     innerPort= '80'
 
-     outerPort= '8080'
+     outerPort= '80'
 
 	   args = ''
 
